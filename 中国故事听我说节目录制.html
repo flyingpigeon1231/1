@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国故事听我说节目录制</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0D47A1',
+                        secondary: '#FFD700',
+                        accent: '#1E88E5',
+                        dark: '#0A1929',
+                        light: '#F8FAFC',
+                        neutral: '#1E293B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .bg-gradient-cctv {
+                background: linear-gradient(135deg, #0A1929 0%, #0D47A1 100%);
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(30, 136, 229, 0.4);
+            }
+            .glass-effect {
+                background: rgba(10, 25, 41, 0.7);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+            .number-input:focus-within {
+                border-color: #FFD700;
+                box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+            }
+            .featured-card {
+                transition: all 0.3s ease;
+                height: 100%;
+            }
+            .featured-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(30, 136, 229, 0.4);
+            }
+            .featured-card img {
+                transition: transform 0.5s ease;
+            }
+            .featured-card:hover img {
+                transform: scale(1.05);
+            }
+            .swiper {
+                width: 100%;
+                height: 100%;
+            }
+            .swiper-slide {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-cctv text-light flex flex-col overflow-x-hidden">
+    <!-- 装饰性背景元素 -->
+    <div class="fixed inset-0 overflow-hidden -z-10">
+        <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,rgba(30,136,229,0.15),transparent_40%)]"></div>
+        <div class="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_80%,rgba(255,215,0,0.1),transparent_40%)]"></div>
+    </div>
+
+    <!-- 顶部导航 -->
+    <header class="glass-effect sticky top-0 z-50 border-b border-accent/20 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center animate-pulse-slow">
+                    <i class="fa fa-play-circle text-primary text-xl"></i>
+                </div>
+                <h1 class="text-xl md:text-2xl font-bold text-white text-shadow">
+                    <span class="text-secondary">中国故事</span>听我说
+                </h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="text-white hover:text-secondary transition-colors duration-300 flex items-center">
+                    <i class="fa fa-home mr-2"></i>首页
+                </a>
+                <a href="#" class="text-white hover:text-secondary transition-colors duration-300 flex items-center">
+                    <i class="fa fa-info-circle mr-2"></i>节目介绍
+                </a>
+                <a href="#" class="text-white hover:text-secondary transition-colors duration-300 flex items-center">
+                    <i class="fa fa-users mr-2"></i>选手风采
+                </a>
+                <a href="#" class="text-white hover:text-secondary transition-colors duration-300 flex items-center">
+                    <i class="fa fa-trophy mr-2"></i>获奖名单
+                </a>
+            </nav>
+            <button class="md:hidden text-white text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="flex-grow container mx-auto px-4 py-12 md:py-20">
+        <div class="max-w-6xl mx-auto">
+            <!-- 标题区域 -->
+            <div class="text-center mb-16 relative">
+                <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-secondary/30 rounded-full blur-sm"></div>
+                <div class="inline-block mb-4 px-8 py-2 bg-primary/20 rounded-full border border-accent/30">
+                    <span class="text-secondary font-medium tracking-wider">中央广播电视总台</span>
+                </div>
+                <h2 class="text-[clamp(2.5rem,6vw,4rem)] font-bold mb-6 text-white text-shadow leading-tight relative">
+                    <span class="relative z-10">中国故事听我说</span>
+                    <span class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-48 h-2 bg-secondary/50 rounded-full blur-sm z-0"></span>
+                </h2>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mt-8">
+                    搜索选手编号或姓名，探索精彩中国故事
+                </p>
+            </div>
+
+            <!-- 搜索区域 -->
+            <div class="glass-effect rounded-2xl p-8 shadow-xl border border-accent/20 mb-16 transform transition-all duration-500 hover:shadow-accent/30 hover:shadow-lg relative overflow-hidden">
+                <!-- 装饰元素 -->
+                <div class="absolute -top-20 -right-20 w-40 h-40 bg-secondary/10 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-accent/10 rounded-full blur-3xl"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row gap-4 items-center">
+                        <div class="relative flex-grow">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                                <i class="fa fa-search text-gray-400"></i>
+                            </div>
+                            <input type="text" id="searchInput" 
+                                class="block w-full pl-12 pr-4 py-4 bg-dark/80 border border-accent/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all duration-300 number-input"
+                                placeholder="请输入选手编号（如: 001）或姓名">
+                        </div>
+                        <button onclick="search()" 
+                            class="w-full md:w-auto px-8 py-4 bg-secondary hover:bg-secondary/90 text-dark font-bold rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-secondary/50 flex items-center justify-center shadow-lg shadow-secondary/20">
+                            <i class="fa fa-search-plus mr-2"></i>
+                            搜索选手
+                        </button>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-400 text-left">
+                        <p>示例：输入 <span class="text-secondary">001</span> 或 <span class="text-secondary">张三</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 节目介绍 -->
+            <div class="glass-effect rounded-xl p-8 border border-accent/20">
+                <h3 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fa fa-info-circle text-secondary mr-3"></i>
+                    关于节目
+                </h3>
+                <p class="text-gray-300 mb-4">
+                    为深入贯彻落实党的二十届三中全会精神和全国宣传思想文化工作会议精神，推动共建"一带一路"、中国非遗宣传推广、文化和旅游宣传推广、东亚文化之都宣传推广，助力构建人类命运共同体，共创世界和平发展的美好未来。
+                </p>
+                <p class="text-gray-300 mb-6">
+                    中央广播电视总台中国交通广播，联合多家单位举办2025年"中国故事听我说"语言艺术展演。本次活动以朗诵、演讲等语言艺术形式为载体，鼓励国内国际青少年通过声音与文字传递中华文化魅力，成为新时代中国故事的"共创者"与"传播者"，全球共话美好中国故事。
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="glass-effect border-t border-accent/20 py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fa fa-play-circle text-secondary text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-white">中国故事听我说</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">
+                        弘扬中华文化，讲述中国故事
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-300">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-300">
+                            <i class="fa fa-wechat"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-300">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-300">
+                            <i class="fa fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+                                
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-white">关于我们</h4>
+                    <p class="text-gray-400 text-sm mb-4">
+                        哈尼伙伴版权所有<br>
+                        联系电话：186-0700-6004<br>
+                    </p>
+                    <p class="text-gray-400 text-sm">
+                        本网站内容均受版权保护，未经许可不得转载
+                    </p>
+                </div>
+            </div>
+            
+            <div class="border-t border-accent/10 mt-8 pt-6 text-center text-gray-400 text-sm">
+                <p>© 2025 中国故事听我说 江西组委会 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 通知组件 -->
+    <div id="notification" class="fixed top-20 right-6 z-50 transform transition-all duration-500 translate-x-full opacity-0"></div>
+
+    <!-- 脚本 -->
+    <script>
+        // 选手完整数据（根据提供的Excel表格更新）
+        const data = [
+            {id: '001', name: '胡皓凡', institution: '欢乐荧星', programName: '《我是中国娃》', programType: '朗诵', avgScore: 95.66, link: 'https://pan.baidu.com/s/1QpeKqLyCbKVLQY62EJ_24A?pwd=1234'},
+            {id: '002', name: '陈芊惠', institution: '欢乐荧星', programName: '《我是中国娃》', programType: '朗诵', avgScore: 96.97, link: 'https://pan.baidu.com/s/1vRNSfcJsdX-ojPtYPVAh7w?pwd=1234'},
+            {id: '003', name: '曾乐庆', institution: '小苹果艺术学校', programName: '《河床》', programType: '朗诵', avgScore: 96.81, link: 'https://pan.baidu.com/s/18OLJpDZIZ9PzBdot25dd_g?pwd=1234'},
+            {id: '004', name: '黄朵儿', institution: '欢乐荧星', programName: '《敦煌壁画—飞天小仙》', programType: '故事表演', avgScore: 96.81, link: 'https://pan.baidu.com/s/10NXjldzzz86Tu9fdbvuWRQ?pwd=1234'},
+            {id: '005', name: '王锦泽', institution: '广电少儿艺术团', programName: '《系好人生第一颗纽扣》解析版', programType: '朗诵', avgScore: 96.58, link: 'https://pan.baidu.com/s/1FENgBWFuqKQuZR3qJQU73Q?pwd=1234'},
+            {id: '006', name: '黄翊珊', institution: '欢乐荧星', programName: '《马虎病毒》', programType: '故事表演', avgScore: 96.25, link: 'https://pan.baidu.com/s/1mko-mVbmOQh6VuUdQVkT5w?pwd=1234'},
+            {id: '007', name: '徐岑熙', institution: '欢乐荧星', programName: '《马虎病毒》', programType: '故事表演', avgScore: 95.82, link: 'https://pan.baidu.com/s/1pUbtnt6YAUZiw4M8Jy4dvw?pwd=1234'},
+            {id: '008', name: '王禹哲', institution: '小苹果艺术学校', programName: '《东郭先生与狼》', programType: '朗诵', avgScore: 97.55, link: 'https://pan.baidu.com/s/1MHlTApE86kHd6KdgQU4AxQ?pwd=1234'},
+            {id: '009', name: '杨纯熙', institution: '欢乐荧星', programName: '《小猪的理想》', programType: '故事表演', avgScore: 97.74, link: 'https://pan.baidu.com/s/1pz4XitSh6hMo2p9NEh0OAQ?pwd=1234'},
+            {id: '010', name: '涂奕凡', institution: '欢乐荧星', programName: '《灰老鼠照镜子》', programType: '故事表演', avgScore: 95.99, link: 'https://pan.baidu.com/s/110SNxUhBE3fKZBtOQLaQvQ?pwd=1234'},
+            {id: '011', name: '程熙雯', institution: '欢乐荧星', programName: '《祖国的春天》', programType: '朗诵', avgScore: 96.76, link: 'https://pan.baidu.com/s/1zbwt0ODRm_wfBdueFXfqAQ?pwd=1234'},
+            {id: '012', name: '罗煜林', institution: '小苹果艺术学校', programName: '《行走在诗词里的春天里》', programType: '朗诵', avgScore: 95.16, link: 'https://pan.baidu.com/s/1tT7uFYQIrxfMX_8wGTp0JQ?pwd=1234'},
+            {id: '013', name: '黄楚越', institution: '欢乐荧星', programName: '《中华少年》', programType: '朗诵', avgScore: 97.61, link: 'https://pan.baidu.com/s/1V85MmyKcWOjgoppoWVc3eQ?pwd=1234'},
+            {id: '014', name: '魏姝', institution: '欢乐荧星', programName: '《小猪的理想》', programType: '故事表演', avgScore: 96.77, link: 'https://pan.baidu.com/s/1beGNvPmTgWvoXbWTT8Z0gQ?pwd=1234'},
+            {id: '015', name: '黄起钰', institution: '欢乐荧星', programName: '《中华少年》', programType: '朗诵', avgScore: 97.71, link: 'https://pan.baidu.com/s/1Za9BR623P_FINohB7hsmMg?pwd=1234'},
+            {id: '016', name: '付莞怡', institution: '欢乐荧星', programName: '《浪浪山里的小妖怪》', programType: '故事表演', avgScore: 95.86, link: 'https://pan.baidu.com/s/1zft-nerv9F2eHA_tnklXTQ?pwd=1234'},
+            {id: '017', name: '熊瑾轩', institution: '小苹果艺术学校', programName: '《中华颂》', programType: '朗诵', avgScore: 95.40, link: 'https://pan.baidu.com/s/1-sE4c7k9yxfx9978_ctX8g?pwd=1234'},
+            {id: '018', name: '王思莹', institution: '广电少儿艺术团', programName: '一本鲜红的士官证', programType: '朗诵', avgScore: 96.21, link: 'https://pan.baidu.com/s/1T00zYutGHg5jvowftTqgCQ?pwd=1234'},
+            {id: '019', name: '刘锦恒', institution: '欢乐荧星', programName: '《老虎学艺》', programType: '朗诵', avgScore: 94.50, link: 'https://pan.baidu.com/s/12sf8n60LFKFwqLDGLvoawA?pwd=1234'},
+            {id: '020', name: '祝钰彤', institution: '个人', programName: '《赣鄱红韵启新程》', programType: '朗诵', avgScore: 96.38, link: 'https://pan.baidu.com/s/1h7bOxUuWUjNE6wIC2rWGhQ?pwd=1234'},
+            {id: '021', name: '吴定高', institution: '昂励优卓成长中心', programName: '祖国到底是什么', programType: '朗诵', avgScore: 96.86, link: 'https://pan.baidu.com/s/17msnhAtEW5_asirco1JbCw?pwd=1234'},
+            {id: '022', name: '丁子祺', institution: '昂励优卓成长中心', programName: '红色小歌仙', programType: '朗诵', avgScore: 97.08, link: 'https://pan.baidu.com/s/129mgM324dFnDgkLpMSwjTw?pwd=1234'},
+            {id: '023', name: '陈亦安', institution: '昂励优卓成长中心', programName: '珍贵的教科书', programType: '朗诵', avgScore: 95.14, link: 'https://pan.baidu.com/s/1KgxUrZg93_nSueGyv5n0lg?pwd=1234'},
+            {id: '024', name: '吴甄', institution: '昂励优卓成长中心', programName: '永远的九岁', programType: '朗诵', avgScore: 97.15, link: 'https://pan.baidu.com/s/1XqNJLp8nyjo3YtL6Kve2-Q?pwd=1234'},
+            {id: '025', name: '陈昕玥', institution: '昂励优卓成长中心', programName: '祖国到底是什么', programType: '故事表演', avgScore: 95.50, link: 'https://pan.baidu.com/s/1-_5IwfKv-tIRxy_ndmpUiA?pwd=1234'},
+            {id: '026', name: '王雨茉', institution: '广电少儿艺术团', programName: '钱币里的红色守护者', programType: '朗诵', avgScore: 96.20, link: 'https://pan.baidu.com/s/1QDc6CYUYzifzz8X0V2U5Gw?pwd=1234'},
+            {id: '027', name: '陈渡蘅', institution: '昂励优卓成长中心', programName: '一块奶酪', programType: '故事表演', avgScore: 95.68, link: 'https://pan.baidu.com/s/1zwtnGkl4VKUp34znvMOISA?pwd=1234'},
+            {id: '028', name: '邹睿', institution: '昂励优卓成长中心', programName: '虎口拔牙', programType: '故事表演', avgScore: 95.86, link: 'https://pan.baidu.com/s/1xEgr3ik-bJrTh7WgoaFogg?pwd=1234'},
+            {id: '029', name: '陈彦霖', institution: '昂励优卓成长中心', programName: '有一粒米思念袁隆平爷爷', programType: '朗诵', avgScore: 96.63, link: 'https://pan.baidu.com/s/1uYcf2BiMnHgrubwjQkANSg?pwd=1234'},
+            {id: '030', name: '郭昕泽', institution: '广电少儿艺术团', programName: '《沂蒙母魂》', programType: '朗诵', avgScore: 97.43, link: 'https://pan.baidu.com/s/1jX-84e87OHBLhH2ADC5lVg?pwd=1234'},
+            {id: '031', name: '蔡羽妍', institution: '昂励优卓成长中心', programName: '聪明的乌龟', programType: '故事表演', avgScore: 95.89, link: 'https://pan.baidu.com/s/16gvd5ONeJggmuEEcZ9xKgg?pwd=1234'},
+            {id: '032', name: '黄文浩', institution: '昂励优卓成长中心', programName: '虎口拔牙', programType: '故事表演', avgScore: 95.19, link: 'https://pan.baidu.com/s/1gcH_iud9J6G10m8MGm2zWQ?pwd=1234'},
+            {id: '033', name: '万宸玥', institution: '俏嘴巴全能表达学院', programName: '孙悟空的现代奇遇', programType: '', avgScore: 96.38, link: 'https://pan.baidu.com/s/1ESJlBDkVD_j4iKgVK2lvYw?pwd=1234'},
+            {id: '034', name: '桂亿宸', institution: '昂励优卓成长中心', programName: '一只说谎话的猫', programType: '故事表演', avgScore: 95.69, link: 'https://pan.baidu.com/s/180gOfnGbNtYTHmLtV7yfTQ?pwd=1234'},
+            {id: '035', name: '张弛', institution: '昂励优卓成长中心', programName: '美丽中国', programType: '朗诵', avgScore: 95.77, link: 'https://pan.baidu.com/s/1ktQkz7vKQWNMMt7GpcxHpg?pwd=1234'},
+            {id: '036', name: '杨语琪', institution: '昂励优卓成长中心', programName: '抗日英雄王二小', programType: '朗诵', avgScore: 95.46, link: 'https://pan.baidu.com/s/1E9lcGXQqC7wipHWGjPdIGA?pwd=1234'},
+            {id: '037', name: '段昱成', institution: '昂励优卓成长中心', programName: '一块奶酪', programType: '故事表演', avgScore: 94.84, link: 'https://pan.baidu.com/s/181PQwu6BV3BFf3QLS1vZGQ?pwd=1234'},
+            {id: '038', name: '熊若琳', institution: '广电少儿艺术团', programName: '《英雄》', programType: '朗诵', avgScore: 97.32, link: 'https://pan.baidu.com/s/1Q8tB2jhC4wr7Nu5Qmaqjmg?pwd=1234'},
+            {id: '039', name: '史程铭', institution: '昂励优卓成长中心', programName: '一封鸡毛信', programType: '朗诵', avgScore: 95.50, link: 'https://pan.baidu.com/s/14LdUXITdUXai6MS7BPGwog?pwd=1234'},
+            {id: '040', name: '陈思齐', institution: '昂励优卓成长中心', programName: '浪浪山里的小妖怪', programType: '故事表演', avgScore: 96.22, link: 'https://pan.baidu.com/s/18jRMSYtZlBnInrOV3rzbeQ?pwd=1234'},
+            {id: '041', name: '倪李想', institution: '蒲亭镇王清云口腔诊所富阳春天', programName: '少年正是读书时', programType: '故事表演', avgScore: 95.72, link: 'https://pan.baidu.com/s/1KVOpwuEP0tQTuWLhXyWK8g?pwd=1234'},
+            {id: '042', name: '吴斯禹', institution: '昂励优卓成长中心', programName: '小河马的大口罩', programType: '故事表演', avgScore: 94.89, link: 'https://pan.baidu.com/s/1Qw85nCJelLnxKpwOruZMvQ?pwd=1234'},
+            {id: '043', name: '邓睿谦', institution: '昂励优卓成长中心', programName: '金色的中国', programType: '朗诵', avgScore: 96.85, link: 'https://pan.baidu.com/s/1WB0IDjOU0YjDnXU_lrvHUQ?pwd=1234'},
+            {id: '044', name: '梅斯乐', institution: '南昌市进贤县少儿艺术团', programName: '祖国啊我亲爱的祖国', programType: '朗诵', avgScore: 95.70, link: 'https://pan.baidu.com/s/1_UVUqKhsVJtYx4L7ShcTUw?pwd=1234'},
+            {id: '045', name: '饶芷萌', institution: '欢乐荧星', programName: '《浪浪山里的小妖怪》', programType: '故事表演', avgScore: 94.13, link: 'https://pan.baidu.com/s/1lXjRgq9M0e0m4s6WxEKgIg?pwd=1234'},
+            {id: '046', name: '李瑞涵', institution: '南昌市进贤县少儿艺术团', programName: '爸爸的爱', programType: '朗诵', avgScore: 95.03, link: 'https://pan.baidu.com/s/1MFm066uiEtFYSCFcorNunw?pwd=1234'},
+            {id: '047', name: '李瑞轩', institution: '南昌市进贤县少儿艺术团', programName: '少年强', programType: '朗诵', avgScore: 95.45, link: 'https://pan.baidu.com/s/12jOAUTXXTWrYvXTlZMyy6g?pwd=1234'},
+            {id: '048', name: '郭汐玥', institution: '欢乐荧星', programName: '《影子爷爷》', programType: '故事表演', avgScore: 94.35, link: 'https://pan.baidu.com/s/1bwpzX6ycEvqqjigTSWfKOA?pwd=1234'},
+            {id: '049', name: '刘洋溢', institution: '南昌市进贤县少儿艺术团', programName: '我与古代先贤对话', programType: '故事表演', avgScore: 95.21, link: 'https://pan.baidu.com/s/1xJdE7L5A_0vYz86XGmPmGg?pwd=1234'},
+            {id: '050', name: '傅嘉裕', institution: '欢乐荧星', programName: '《影子爷爷》', programType: '故事表演', avgScore: 98.02, link: 'https://pan.baidu.com/s/1GWDRFcLkovD1GhgvLCRZVw?pwd=1234'},
+            {id: '051', name: '李槿钰', institution: '欢乐荧星', programName: '《小猪的理想》', programType: '故事表演', avgScore: 96.91, link: 'https://pan.baidu.com/s/1NYeYY01Stkvuyno956m0OA?pwd=1234'},
+            {id: '052', name: '欧阳昌萱', institution: '鹰潭市', programName: '《我的家乡鹰潭市：一张会讲故事的“藏宝图”》', programType: '朗诵', avgScore: 96.80, link: 'https://pan.baidu.com/s/1CxHssWV2NfufOSp1dlpJqA?pwd=1234'},
+            {id: '053', name: '罗思涵', institution: '广电少儿艺术团', programName: '《红旗一角的故事》', programType: '朗诵', avgScore: 95.24, link: 'https://pan.baidu.com/s/1TxxSma4uVzer_jWtRQgn0g?pwd=1234'},
+            {id: '054', name: '胡屹然', institution: '欢乐荧星', programName: '《在冬天的麦苗上看到中国的春天》', programType: '朗诵', avgScore: 96.71, link: 'https://pan.baidu.com/s/1JyiF8CAe4B_4CGcgwUdwtA?pwd=1234'},
+            {id: '055', name: '张懿宸', institution: '欢乐荧星', programName: '《浪浪山里的小妖怪》', programType: '故事表演', avgScore: 95.84, link: 'https://pan.baidu.com/s/10tDaOIAw1cwCoGUMFsYDBw?pwd=1234'},
+            {id: '056', name: '徐子诺', institution: '鹰潭市', programName: '《龙虎山传奇——张天师智斗恶蛟龙》', programType: '朗诵', avgScore: 96.58, link: 'https://pan.baidu.com/s/1qzGJhMrc-e592Vays2p3xg?pwd=1234'},
+            {id: '057', name: '周子尧', institution: '广电少儿艺术团', programName: '不朽', programType: '朗诵', avgScore: 96.14, link: 'https://pan.baidu.com/s/1kywrOXWuy4LzvYFN2x1Qmw?pwd=1234'},
+            {id: '058', name: '涂政禹', institution: '欢乐荧星', programName: '《猴子的眼镜》', programType: '故事表演', avgScore: 96.19, link: 'https://pan.baidu.com/s/1zRtS8_c1RfbxqOcgXpeOlg?pwd=1234'},
+            {id: '059', name: '徐圣伦', institution: '欢乐荧星', programName: '《动物职业介绍所》', programType: '故事表演', avgScore: 95.04, link: 'https://pan.baidu.com/s/1TvBTzaHS-hftwRcKEM_r-w?pwd=1234'},
+            {id: '060', name: '胡灵熙', institution: '抚州梦想金话筒', programName: '《永不消逝的声音》', programType: '朗诵', avgScore: 97.87, link: 'https://pan.baidu.com/s/1YhbY8nNHZKrC8NGs5dU8JA?pwd=1234'},
+            {id: '061', name: '胡涵', institution: '广电少儿艺术团', programName: '《红旗一角的故事》', programType: '朗诵', avgScore: 95.37, link: 'https://pan.baidu.com/s/1LjmOqz-pjPkVSK7_SO1E6w?pwd=1234'},
+            {id: '062', name: '徐子淇', institution: '欢乐荧星', programName: '《三只小猪》', programType: '故事表演', avgScore: 97, link: 'https://pan.baidu.com/s/18J_92-1iGqKgFCUtVmA-Pw?pwd=1234'},
+            {id: '063', name: '杨朝旭', institution: '欢乐荧星', programName: '《别人家的孩子》', programType: '故事表演', avgScore: 97.15, link: 'https://pan.baidu.com/s/12kChLxBQ8LKkJ-rgVOiRQQ?pwd=1234'},
+            {id: '064', name: '曾槿毓', institution: '抚州梦想金话筒', programName: '《红色小歌仙》', programType: '朗诵', avgScore: 98.00, link: 'https://pan.baidu.com/s/1B2cCNnbr0ZmNRjj2vZL4DA?pwd=1234'},
+            {id: '065', name: '车望舒', institution: '初源艺术培训中心', programName: '做最真实的自己', programType: '脱口秀', avgScore: 98.06, link: 'https://pan.baidu.com/s/1N9MUdhRIV6kmSnKdakKdeQ?pwd=1234'},
+            {id: '066', name: '管语彤', institution: '广电少儿艺术团', programName: '《松枝绿·浪花白》', programType: '朗诵', avgScore: 95.50, link: 'https://pan.baidu.com/s/1dRm5Lv-osP1zYCaWOa9aSg?pwd=1234'},
+            {id: '067', name: '周芷萱', institution: '抚州梦想金话筒', programName: '《美哉 诗经》', programType: '朗诵', avgScore: 97.03, link: 'https://pan.baidu.com/s/1bTrINlDL2khHQO4rKttnDw?pwd=1234'},
+            {id: '068', name: '马梓牧', institution: '汇童言语言艺术中心', programName: '《雄狮少年》', programType: '朗诵', avgScore: 96.95, link: 'https://pan.baidu.com/s/1CrJmrplj4b-rWElksl_ffQ?pwd=1234'},
+            {id: '069', name: '张诺妍', institution: '海希播音主持', programName: '《蜘蛛开店》', programType: '故事表演', avgScore: 96.18, link: 'https://pan.baidu.com/s/1zKR5gRkuY1b5G-3HoKXeIg?pwd=1234'},
+            {id: '070', name: '吴思铭', institution: '九江修水艺伽口才', programName: '《心向山河，梦铸军魂》原创', programType: '朗诵', avgScore: 97.64, link: 'https://pan.baidu.com/s/1GNyfSer7lvk9Wn-riTVnrg?pwd=1234'},
+            {id: '071', name: '刘新奕', institution: '汇童言语言艺术中心', programName: '《影子爷爷》', programType: '朗诵', avgScore: 0.00, link: '未找到'},
+            {id: '072', name: '王语汐', institution: '海希播音主持', programName: '《故宫御猫夜游记》', programType: '故事表演', avgScore: 95.80, link: 'https://pan.baidu.com/s/1EUgJ1czRuafr6haXY71W7g?pwd=1234'},
+            {id: '073', name: '赖思贤', institution: '九江修水艺伽口才', programName: '《诗乡里的月光路》原创', programType: '朗诵', avgScore: 97.68, link: 'https://pan.baidu.com/s/1t0fESgOprg9LJWAXQStEpg?pwd=1234'},
+            {id: '074', name: '梅凌玥', institution: '抚州梦想金话筒', programName: '《姥姥的剪纸》', programType: '朗诵', avgScore: 97.95, link: 'https://pan.baidu.com/s/1wORN3EoCS9wQXksB_2KIng?pwd=1234'},
+            {id: '075', name: '胡敏伊', institution: '海希播音主持', programName: '《大肚子怪兽》', programType: '故事表演', avgScore: 95.29, link: 'https://pan.baidu.com/s/1WfnTykg_nfAiWOU9CPodjA?pwd=1234'},
+            {id: '076', name: '刘希悦', institution: '九江修水艺伽口才', programName: '《哨子里的春天》原创', programType: '朗诵', avgScore: 98.26, link: 'https://pan.baidu.com/s/1B6-cFwjHEVGlPoMxUK9KrA?pwd=1234'},
+            {id: '077', name: '李雨薇', institution: '俏嘴巴全能表达学院', programName: '《最后一个拥抱》', programType: '', avgScore: 97.72, link: 'https://pan.baidu.com/s/1hpIeFEsXSvU7nQA-8FgG5A?pwd=1234'},
+            {id: '078', name: '赖昶', institution: '九江修水艺伽口才', programName: '《妈妈的星星灯》原创', programType: '朗诵', avgScore: 96.94, link: 'https://pan.baidu.com/s/1tkSPBH2FNDb1I-1nG6iWiw?pwd=1234'},
+            {id: '079', name: '纪子建', institution: '海希播音主持', programName: '没用的第二名', programType: '故事表演', avgScore: 94.69, link: 'https://pan.baidu.com/s/1ObocjpqhTR-AszqrFvpTvA?pwd=1234'},
+            {id: '080', name: '罗森瀚', institution: '海希播音主持', programName: '《骑着自行车上月球》', programType: '故事表演', avgScore: 94.48, link: 'https://pan.baidu.com/s/1pkOk47E7etYZBRt7WZSaLA?pwd=1234'},
+            {id: '081', name: '周泓妤', institution: '汇童言语言艺术中心', programName: '《锦绣》', programType: '朗诵', avgScore: 96.29, link: 'https://pan.baidu.com/s/1LMkCRtGhr5MyJAr9egntEg?pwd=1234'},
+            {id: '082', name: '简楚妍', institution: '俏嘴巴全能表达学院', programName: '', programType: '', avgScore: 97.05, link: 'https://pan.baidu.com/s/1nj4QKQ6I78kx5Z3nIQ4EXA?pwd=1234'},
+            {id: '083', name: '戴琬程', institution: '海希播音主持', programName: '《别着急 慢慢来》', programType: '故事表演', avgScore: 95.33, link: 'https://pan.baidu.com/s/18Bw_BWNvvZWn0jlH1bWKGA?pwd=1234'},
+            {id: '084', name: '徐铭玥', institution: '海希播音主持', programName: '别人家的孩子', programType: '故事表演', avgScore: 95.46, link: 'https://pan.baidu.com/s/1rXwa5hOUDkBHsf3mtwWiAw?pwd=1234'},
+            {id: '085', name: '张雨施', institution: '汇童言语言艺术中心', programName: '《美丽的集邮册》', programType: '朗诵', avgScore: 97.14, link: 'https://pan.baidu.com/s/1feL2K9WApbRYqxDTnfzjqg?pwd=1234'},
+            {id: '086', name: '张铭鲁钰', institution: '海希播音主持', programName: '有一粒湘米思念袁隆平爷爷', programType: '故事表演', avgScore: 96.00, link: 'https://pan.baidu.com/s/1QmfSG4qyXfqNU4NDL2KclA?pwd=1234'},
+            {id: '087', name: '黄思淇', institution: '广电少儿艺术团', programName: '《木匣里的勋章：三代人的国防密码》(1)', programType: '朗诵', avgScore: 95.33, link: 'https://pan.baidu.com/s/1D35VdRQk8L0fwbeXbcvSUA?pwd=1234'},
+            {id: '088', name: '余思辰', institution: '广电少儿艺术团', programName: '不朽', programType: '朗诵', avgScore: 96.35, link: 'https://pan.baidu.com/s/1AXtO8pbdY8LPrsg5Vor6ug?pwd=1234'},
+            {id: '089', name: '俞九琦', institution: '民和六小', programName: '守护我们的星辰大海', programType: '朗诵', avgScore: 97.54, link: 'https://pan.baidu.com/s/1VY1K6hqKcnbc_k70cC_7_g?pwd=1234'},
+            {id: '090', name: '颜亦辰', institution: '小明星艺术培训中心有限公司', programName: '《红铁》', programType: '朗诵', avgScore: 98.21, link: 'https://pan.baidu.com/s/1iYUPVvfSjunZ5D-e_awR1g?pwd=1234'},
+            {id: '091', name: '陈可妍', institution: '小明星艺术培训中心有限公司', programName: '《小老鼠的梦》', programType: '朗诵', avgScore: 95.84, link: 'https://pan.baidu.com/s/1aBNpTQ1WQ2xzw0XQOVywdQ?pwd=1234'},
+            {id: '092', name: '谢若溪', institution: '小明星艺术培训中心有限公司', programName: '《小熊拔牙》', programType: '朗诵', avgScore: 96.31, link: 'https://pan.baidu.com/s/12XFGuEONf9YNXHbbhwZS4w?pwd=1234'},
+            {id: '093', name: '娄珺仪', institution: '小明星艺术培训中心有限公司', programName: '《毛毛虫出门》', programType: '朗诵', avgScore: 95.83, link: 'https://pan.baidu.com/s/13_0HsLwuZnI9tS4lTuvkXQ?pwd=1234'},
+            {id: '094', name: '胡梓钰', institution: '小明星艺术培训中心有限公司', programName: '《狐狸和葡萄》', programType: '朗诵', avgScore: 95.54, link: 'https://pan.baidu.com/s/1wy-9S35_ghX2FOEImx1DpA?pwd=1234'},
+            {id: '095', name: '范昊男', institution: '小明星艺术培训中心有限公司', programName: '《祖国妈妈》', programType: '朗诵', avgScore: 97.78, link: 'https://pan.baidu.com/s/1p75dZceLisQB_jc614c3ag?pwd=1234'},
+            {id: '096', name: '张哲远', institution: '小明星艺术培训中心有限公司', programName: '《五指相争》', programType: '朗诵', avgScore: 94.81, link: 'https://pan.baidu.com/s/1vGxIJheR1SY2fTQ1rMtMUQ?pwd=1234'},
+            {id: '097', name: '张灿誉', institution: '小明星艺术培训中心有限公司', programName: '《狮子和老鼠》', programType: '朗诵', avgScore: 95.59, link: 'https://pan.baidu.com/s/1PttVb-WwIw6j6Z5sBbXHUw?pwd=1234'},
+            {id: '098', name: '张紫熙', institution: '小明星艺术培训中心有限公司', programName: '《淘淘卖香蕉》', programType: '朗诵', avgScore: 95.71, link: 'https://pan.baidu.com/s/1ECPSZgu5z-2qtKoeKEPscA?pwd=1234'},
+            {id: '099', name: '祝雅萱', institution: '小明星艺术培训中心有限公司', programName: '《红色小歌仙》', programType: '朗诵', avgScore: 97.64, link: 'https://pan.baidu.com/s/1tq2Gbmvox4FgdPkirtzXcg?pwd=1234'},
+            {id: '100', name: '毛晟林', institution: '小明星艺术培训中心有限公司', programName: '《我有一个梦想》', programType: '朗诵', avgScore: 96.59, link: 'https://pan.baidu.com/s/1wPp5DYCvkvXQF3ikVAKfeg?pwd=1234'},
+            {id: '101', name: '洪周天', institution: '小明星艺术培训中心有限公司', programName: '《大山里的孩子》', programType: '朗诵', avgScore: 97.83, link: 'https://pan.baidu.com/s/17XtFWYjIgWgcW121V9WSfg?pwd=1234'},
+            {id: '102', name: '邹子瑞', institution: '小明星艺术培训中心有限公司', programName: '《字典公公家里的争吵》', programType: '朗诵', avgScore: 95.39, link: 'https://pan.baidu.com/s/1chv0rlSyyqEqSXzVz2aHXQ?pwd=1234'},
+            {id: '103', name: '赵梓萱', institution: '小明星艺术培训中心有限公司', programName: '《有一粒米思念袁隆平爷爷》', programType: '朗诵', avgScore: 95.89, link: 'https://pan.baidu.com/s/1KfqoqldFQyu67jq4v7n0cQ?pwd=1234'},
+            {id: '104', name: '龙云臻', institution: '小明星艺术培训中心有限公司', programName: '《永远的九岁》', programType: '朗诵', avgScore: 97.46, link: 'https://pan.baidu.com/s/1a81SAl_QZ6RxaXe3-_lkcw?pwd=1234'},
+            {id: '105', name: '周家玉', institution: '小明星艺术培训中心有限公司', programName: '《童年的阿土列尔》', programType: '朗诵', avgScore: 96.14, link: 'https://pan.baidu.com/s/1Xzw1cymYI6mwk85Q5ThgsQ?pwd=1234'},
+            {id: '106', name: '章恩泽', institution: '小明星艺术培训中心有限公司', programName: '《仰望星空的老人》', programType: '朗诵', avgScore: 96.94, link: 'https://pan.baidu.com/s/1GFPwT0Wo0I8fi-QzWCjVSA?pwd=1234'},
+            {id: '107', name: '方珣昱', institution: '小明星艺术培训中心有限公司', programName: '《军礼》', programType: '朗诵', avgScore: 97.86, link: 'https://pan.baidu.com/s/1e40YPRDTKVdFAAf1F5NtPA?pwd=1234'},
+            {id: '108', name: '周玟萱', institution: '小明星艺术培训中心有限公司', programName: '《敦煌飞天小仙女》', programType: '朗诵', avgScore: 97.84, link: 'https://pan.baidu.com/s/1jNSzn6ogfyWbRXPUj-zVmw?pwd=1234'},
+            {id: '109', name: '孙亚洲', institution: '小明星艺术培训中心有限公司', programName: '《猴吃西瓜》', programType: '朗诵', avgScore: 97.22, link: 'https://pan.baidu.com/s/1bc52XB-XBTPp5wwQLOxfSw?pwd=1234'},
+            {id: '110', name: '李云瑞', institution: '小明星艺术培训中心有限公司', programName: '《唐诗里的中国》', programType: '朗诵', avgScore: 95.99, link: 'https://pan.baidu.com/s/1lWlivbYbBTo1m3UMBCL6Kg?pwd=1234'},
+            {id: '111', name: '聂通', institution: '小明星艺术培训中心有限公司', programName: '《胆小先生》', programType: '朗诵', avgScore: 97.34, link: 'https://pan.baidu.com/s/1G-MrpObOe2aPro0hxKJONg?pwd=1234'},
+            {id: '112', name: '邵玉涵', institution: '小明星艺术培训中心有限公司', programName: '《星期一逃跑了》', programType: '朗诵', avgScore: 98.16, link: 'https://pan.baidu.com/s/1zMjFJMXpFSKYqyOFXq8FDA?pwd=1234'},
+            {id: '113', name: '方子沐', institution: '小明星艺术培训中心有限公司', programName: '《灰老鼠照镜子》', programType: '朗诵', avgScore: 96.56, link: 'https://pan.baidu.com/s/1pBiXHYDp1SeejdPMHN8gSw?pwd=1234'},
+            {id: '114', name: '汪熙哲', institution: '小明星艺术培训中心有限公司', programName: '《黄鼠狼送外卖》', programType: '朗诵', avgScore: 96.13, link: 'https://pan.baidu.com/s/12HWnbRrQWv3hhFf12E7k3Q?pwd=1234'},
+            {id: '115', name: '曾清漪', institution: '小明星艺术培训中心有限公司', programName: '《一园青菜成了精》', programType: '朗诵', avgScore: 96.43, link: 'https://pan.baidu.com/s/1Lodt_PD3cMsDy3hxQTzyuA?pwd=1234'},
+            {id: '116', name: '付煜晨', institution: '小明星艺术培训中心有限公司', programName: '《我长大了》', programType: '朗诵', avgScore: 94.87, link: 'https://pan.baidu.com/s/1v1ssqWA3f5xwcAJOTbaifQ?pwd=1234'},
+            {id: '117', name: '伍黄博文', institution: '小明星艺术培训中心有限公司', programName: '《小弟和小猫》', programType: '朗诵', avgScore: 98, link: 'https://pan.baidu.com/s/12KOYUVKsjFHPTORkFFGXMw?pwd=1234'},
+            {id: '118', name: '陈建儒', institution: '小明星艺术培训中心有限公司', programName: '《小猪的理想》', programType: '朗诵', avgScore: 96.10, link: 'https://pan.baidu.com/s/10xi0fD-xkakqhZAiNJ1CkQ?pwd=1234'},
+            {id: '119', name: '黄可沁', institution: '小明星艺术培训中心有限公司', programName: '《两只老鼠胆子大》', programType: '朗诵', avgScore: 96.13, link: 'https://pan.baidu.com/s/1WerYgeqfi7dSQqDCMFTfxw?pwd=1234'},
+            {id: '120', name: '曹傲涵', institution: '小明星艺术培训中心有限公司', programName: '《老虎拔牙》', programType: '朗诵', avgScore: 97.97, link: 'https://pan.baidu.com/s/1_vM31a4jQ7yV-_SzOfSJvw?pwd=1234'},
+            {id: '121', name: '张焙恩', institution: '小明星艺术培训中心有限公司', programName: '《让爱回家》', programType: '朗诵', avgScore: 97.40, link: 'https://pan.baidu.com/s/1LwSTQGlZHOybW174MZXvsA?pwd=1234'},
+            {id: '122', name: '李子康', institution: '小明星艺术培训中心有限公司', programName: '《小萝卜头》', programType: '朗诵', avgScore: 98.17, link: 'https://pan.baidu.com/s/1glx0DHZWNs6xNp9qjW43Gg?pwd=1234'},
+            {id: '123', name: '张宏远', institution: '个人', programName: '小萝卜头的告白', programType: '故事', avgScore: 98.70, link: 'https://pan.baidu.com/s/1royjlhPJg-iA7HiRa4oZSA?pwd=1234'},
+            {id: '124', name: '周莘宸', institution: '小明星艺术培训中心有限公司', programName: '《冲天英雄》', programType: '朗诵', avgScore: 96.79, link: 'https://pan.baidu.com/s/12UL0NDjqEMuxli515zAasw?pwd=1234'},
+            {id: '125', name: '郭秋瑩', institution: '小明星艺术培训中心有限公司', programName: '《诗意中国》', programType: '朗诵', avgScore: 97.51, link: 'https://pan.baidu.com/s/1gmUhSWAbKfX3rst2A82wJQ?pwd=1234'},
+            {id: '126', name: '胡郑哲', institution: '小明星艺术培训中心有限公司', programName: '《我骄傲我是中国人》', programType: '朗诵', avgScore: 95.87, link: 'https://pan.baidu.com/s/1qT21iFA0bEPMl-vuSkqDdg?pwd=1234'},
+            {id: '127', name: '陈冠宇', institution: '小明星艺术培训中心有限公司', programName: '《万疆》', programType: '朗诵', avgScore: 96.00, link: 'https://pan.baidu.com/s/1aDebVsRxirEN5bRaRU0NcA?pwd=1234'},
+            {id: '128', name: '林依', institution: '小明星艺术培训中心有限公司', programName: '《带雨的花》', programType: '朗诵', avgScore: 95.92, link: 'https://pan.baidu.com/s/1MIhu7skxfrW2H3-gLGGiPA?pwd=1234'},
+            {id: '129', name: '胡艺雪', institution: '小明星艺术培训中心有限公司', programName: '《读中国》', programType: '朗诵', avgScore: 96.09, link: 'https://pan.baidu.com/s/1yv4NEunQD9nKxxbWX8foew?pwd=1234'},
+            {id: '130', name: '游佳梦', institution: '小明星艺术培训中心有限公司', programName: '《和大山攀谈》', programType: '朗诵', avgScore: 98.23, link: 'https://pan.baidu.com/s/141lrAornWmabLGq4gG_ePg?pwd=1234'},
+            {id: '131', name: '聂瑜', institution: '小明星艺术培训中心有限公司', programName: '《中国军魂》', programType: '朗诵', avgScore: 98.12, link: 'https://pan.baidu.com/s/1uSUtBfbL6Qd2F7aidMpFtg?pwd=1234'},
+            {id: '132', name: '王萱', institution: '小明星艺术培训中心有限公司', programName: '《就是那一只蟋蟀》', programType: '朗诵', avgScore: 96.92, link: 'https://pan.baidu.com/s/1_jJzTX3WAoJNZA_vjNxJMg?pwd=1234'},
+            {id: '133', name: '饶梓馨', institution: '小明星艺术培训中心有限公司', programName: '《中华魂》', programType: '朗诵', avgScore: 96.56, link: 'https://pan.baidu.com/s/1Ylnbtks3edmjbyu9KQHF-A?pwd=1234'},
+            {id: '134', name: '周乐阳', institution: '小明星艺术培训中心有限公司', programName: '《不朽》', programType: '朗诵', avgScore: 97.80, link: 'https://pan.baidu.com/s/1KdfCMX7B6Z97Gi10yPg-JQ?pwd=1234'},
+            {id: '135', name: '李雨欣', institution: '抚州梦想金话筒', programName: '《狐狸列娜》', programType: '朗诵', avgScore: 98.00, link: 'https://pan.baidu.com/s/1L6AE_nVcbZPW3M4AInoeKw?pwd=1234'},
+            {id: '136', name: '黄雅欣', institution: '小明星艺术培训中心有限公司', programName: '《月光下的中国》', programType: '朗诵', avgScore: 97.40, link: 'https://pan.baidu.com/s/1k2yuL8jbOuxlENIpJg42YQ?pwd=1234'},
+            {id: '137', name: '冯俊智', institution: '卡卡口才', programName: '猴吃西瓜', programType: '', avgScore: 0.00, link: '未找到'},
+            {id: '138', name: '邓思远', institution: '卡卡口才', programName: '肩上的路，路上的魂', programType: '', avgScore: 95.21, link: 'https://pan.baidu.com/s/1IFaYhMsEs_ime75XuJBekQ?pwd=1234'},
+            {id: '139', name: '章子卿', institution: '小明星艺术培训中心有限公司', programName: '《青春中国》', programType: '朗诵', avgScore: 97.28, link: 'https://pan.baidu.com/s/1-yunZl6_zHo7ckKHhNXB3Q?pwd=1234'},
+            {id: '140', name: '曾好', institution: '小明星艺术培训中心有限公司', programName: '《在冬天的麦苗上，看到中国的夏天》', programType: '朗诵', avgScore: 96.70, link: 'https://pan.baidu.com/s/1rjePMbtA4KSuZn4zL7TtQQ?pwd=1234'},
+            {id: '141', name: '蒋雨希', institution: '俏嘴巴全能表达学院', programName: '我和皮影戏的约定', programType: '朗诵', avgScore: 96.27, link: 'https://pan.baidu.com/s/1_U5C-Yo7iaNUDQFfEInQBA?pwd=1234'},
+            {id: '142', name: '赖昱琛', institution: '俏嘴巴全能表达学院', programName: '星星的悄悄话', programType: '朗诵', avgScore: 94.39, link: 'https://pan.baidu.com/s/1tXWJ5MEs01igEdiMJbKNCQ?pwd=1234'},
+            {id: '143', name: '宋林轩', institution: '俏嘴巴全能表达学院', programName: '如果我的袜子会说话', programType: '朗诵', avgScore: 97.54, link: 'https://pan.baidu.com/s/1cfEQx5Q8dXygBpVab1mnEg?pwd=1234'},
+            {id: '144', name: '陈波睿', institution: '小明星艺术培训中心有限公司', programName: '《军旗颂》', programType: '朗诵', avgScore: 95.27, link: 'https://pan.baidu.com/s/1lKgUyoHeYEVjSVud_X-aCQ?pwd=1234'},
+            {id: '145', name: '唐熙洛', institution: '俏嘴巴全能表达学院', programName: '点点大人出走了', programType: '朗诵', avgScore: 96.01, link: 'https://pan.baidu.com/s/1TREG7GakbhU2Motf4RYnyQ?pwd=1234'},
+            {id: '146', name: '简云帆', institution: '俏嘴巴全能表达学院', programName: '黑猫警长痛歼搬仓鼠', programType: '朗诵', avgScore: 96.37, link: 'https://pan.baidu.com/s/1ymWz0nJDE55ucuuPeo0eeg?pwd=1234'},
+            {id: '147', name: '许健豪', institution: '小明星艺术培训中心有限公司', programName: '《穿越千年的驼铃》', programType: '朗诵', avgScore: 97.71, link: 'https://pan.baidu.com/s/1Uw01-51JTt5_YSoZ__7tLg?pwd=1234'},
+            {id: '148', name: '方锦汐', institution: '俏嘴巴全能表达学院', programName: '布老虎的独白', programType: '朗诵', avgScore: 97.91, link: 'https://pan.baidu.com/s/1r5-Bi2gwguo8nQDvhMx7mg?pwd=1234'},
+            {id: '149', name: '周亦桐', institution: '俏嘴巴全能表达学院', programName: '点点大人出走了', programType: '朗诵', avgScore: 97.44, link: 'https://pan.baidu.com/s/1jXEjXGIAqrwzoSllb9HVsA?pwd=1234'},
+            {id: '150', name: '谢语辰', institution: '抚州梦想金话筒', programName: '《中国话》', programType: '朗诵', avgScore: 96.24, link: 'https://pan.baidu.com/s/10nZ1v4tZcX_JttpRj0fm0g?pwd=1234'},
+            {id: '151', name: '李乔伊', institution: '俏嘴巴全能表达学院', programName: '小剪刀的非遗之旅', programType: '朗诵', avgScore: 97.09, link: 'https://pan.baidu.com/s/1uyszsKpAUkmqz_-DwVA0UA?pwd=1234'},
+            {id: '152', name: '曹可妍', institution: '俏嘴巴全能表达学院', programName: '敦煌壁画——飞天小仙', programType: '朗诵', avgScore: 95.26, link: 'https://pan.baidu.com/s/16VZiAMM7uCAT0rPmiAhGYw?pwd=1234'},
+            {id: '153', name: '张乐瑶', institution: '广电少儿艺术团', programName: '参赛稿件——《月光下的中国》', programType: '朗诵', avgScore: 95.91, link: 'https://pan.baidu.com/s/1euZZ-dxNza7Wv2g9ZHxTrw?pwd=1234'},
+            {id: '154', name: '刘昱柯', institution: '俏嘴巴全能表达学院', programName: '马虎病毒', programType: '朗诵', avgScore: 95.55, link: 'https://pan.baidu.com/s/1JcJOpDaKByjSDgNrns5tUQ?pwd=1234'},
+            {id: '155', name: '喻雨薇', institution: '俏嘴巴全能表达学院', programName: '扣好人生的第一粒扣子', programType: '朗诵', avgScore: 95.96, link: 'https://pan.baidu.com/s/1qKYVD3hhG7ffAzDaXTwK-w?pwd=1234'},
+            {id: '156', name: '罗泽皓', institution: '小明星艺术培训中心有限公司', programName: '《小老虎当评委》', programType: '朗诵', avgScore: 94.74, link: 'https://pan.baidu.com/s/1fFmcHFAlsfNmkdBZIGPp2A?pwd=1234'},
+            {id: '157', name: '侯悦然', institution: '俏嘴巴全能表达学院', programName: '敦煌飞天的奇妙旅行', programType: '朗诵', avgScore: 97.25, link: 'https://pan.baidu.com/s/1Er0J6OWNMG5EjqG6oR-o0g?pwd=1234'},
+            {id: '158', name: '李嘉妮', institution: '俏嘴巴全能表达学院', programName: '非遗的独白——布老虎', programType: '朗诵', avgScore: 95.39, link: 'https://pan.baidu.com/s/1jeoC4n6-6fZ7QR5-sqZmRA?pwd=1234'},
+            {id: '159', name: '戴诗语', institution: '小明星艺术培训中心有限公司', programName: '《写给云》', programType: '朗诵', avgScore: 94.50, link: 'https://pan.baidu.com/s/1qrAxFtvd52BK4QUhOTcSLg?pwd=1234'},
+            {id: '160', name: '简琳芮', institution: '俏嘴巴全能表达学院', programName: '丝路驼队的新伙伴', programType: '朗诵', avgScore: 97.93, link: 'https://pan.baidu.com/s/1dkOdZCMV4SoNpX24oy0o0Q?pwd=1234'},
+            {id: '161', name: '毛诗予', institution: '俏嘴巴全能表达学院', programName: '奶奶的剪纸王国', programType: '朗诵', avgScore: 94.92, link: 'https://pan.baidu.com/s/1rQw7Jq65J6EWntImkxdeaw?pwd=1234'},
+            {id: '162', name: '刘棋棋', institution: '俏嘴巴全能表达学院', programName: '敦煌壁画——飞天小仙', programType: '朗诵', avgScore: 97.00, link: 'https://pan.baidu.com/s/1_x5K79DBXYviWW6M9r420g?pwd=1234'},
+            {id: '163', name: '黄知行', institution: '小明星艺术培训中心有限公司', programName: '《狮子和老鼠》', programType: '朗诵', avgScore: 95.16, link: 'https://pan.baidu.com/s/1Gh0ba3naBrGNuSzcWFXUQQ?pwd=1234'},
+            {id: '164', name: '胡亦可', institution: '俏嘴巴全能表达学院', programName: '小剪刀的非遗之旅', programType: '朗诵', avgScore: 95.15, link: 'https://pan.baidu.com/s/1lReMpT3A0hpHkQUzK0Ie7g?pwd=1234'},
+            {id: '165', name: '褚千寻', institution: '煋途嘉言少儿口才', programName: '《我非淑女》', programType: '朗诵', avgScore: 96.64, link: 'https://pan.baidu.com/s/1m0c1zOlTqClFFz6jgKmhWw?pwd=1234'},
+            {id: '166', name: '周奕昕', institution: '俏嘴巴全能表达学院', programName: '我非淑女', programType: '朗诵', avgScore: 96.53, link: 'https://pan.baidu.com/s/1vlJgg861kfNBDjBBTlA2VQ?pwd=1234'},
+            {id: '167', name: '盛辰明', institution: '煋途嘉言少儿口才', programName: '《我家的武功高手》', programType: '朗诵', avgScore: 97.26, link: 'https://pan.baidu.com/s/1GzmcwtzFa7QguAZ-vxe4Fw?pwd=1234'},
+            {id: '168', name: '吴轩亦', institution: '俏嘴巴全能表达学院', programName: '专治不及格的糖', programType: '朗诵', avgScore: 94.82, link: 'https://pan.baidu.com/s/1zC6EQC_mI3EMPvjzXek5_g?pwd=1234'},
+            {id: '169', name: '廖恒宇', institution: '小明星艺术培训中心有限公司', programName: '《老虎拔牙》', programType: '朗诵', avgScore: 95.92, link: 'https://pan.baidu.com/s/1v3B2-3wn_1tE49GC2KEYaw?pwd=1234'},
+            {id: '170', name: '刘瑾惜', institution: '俏嘴巴全能表达学院', programName: '文物兔首的独白', programType: '朗诵', avgScore: 96.67, link: 'https://pan.baidu.com/s/1aJR-RbgZze57Af0nTa_Afg?pwd=1234'},
+            {id: '171', name: '邹一依', institution: '俏嘴巴全能表达学院', programName: '民族的脊梁', programType: '朗诵', avgScore: 95.67, link: 'https://pan.baidu.com/s/1nSMuTuQAC9vQy-fbKx5HEQ?pwd=1234'},
+            {id: '172', name: '饶羽茜', institution: '俏嘴巴全能表达学院', programName: '我和糖画的甜蜜约定', programType: '朗诵', avgScore: 94.91, link: 'https://pan.baidu.com/s/1kjdPw_wztEonUR3_zbVkuQ?pwd=1234'},
+            {id: '173', name: '何雪琦', institution: '小明星艺术培训中心有限公司', programName: '《老鼠嫁女》', programType: '朗诵', avgScore: 95.45, link: 'https://pan.baidu.com/s/1AjSEK8fyFoxn6nDXReTSDA?pwd=1234'},
+            {id: '174', name: '林熙童', institution: '俏嘴巴全能表达学院', programName: '摆烂少年', programType: '朗诵', avgScore: 97.58, link: 'https://pan.baidu.com/s/1L9GSPNT2hhjC2xTL3A61dw?pwd=1234'},
+            {id: '175', name: '刘境琳', institution: '俏嘴巴全能表达学院', programName: '', programType: '朗诵', avgScore: 95.79, link: 'https://pan.baidu.com/s/1EWVHDmUrcc3KCwk7Oa2zzg?pwd=1234'},
+            {id: '176', name: '曾梓浩', institution: '抚州梦想金话筒', programName: '《砸鱼》', programType: '朗诵', avgScore: 97.54, link: 'https://pan.baidu.com/s/1T9xAT2CGKogzWoT_5YNrYQ?pwd=1234'},
+            {id: '177', name: '黎昕妍', institution: '俏嘴巴全能表达学院', programName: '稻穗里的星火', programType: '朗诵', avgScore: 97.83, link: 'https://pan.baidu.com/s/1kGG1s5VfEXgF3c3WEhDi-A?pwd=1234'},
+            {id: '178', name: '喻薇扬', institution: '俏嘴巴全能表达学院', programName: '追光', programType: '朗诵', avgScore: 98.09, link: 'https://pan.baidu.com/s/1iK7kV5kx2hD8J1WFtpvTHg?pwd=1234'},
+            {id: '179', name: '杨昕邑', institution: '俏嘴巴全能表达学院', programName: '伟大的糖丸爷爷', programType: '朗诵', avgScore: 96.21, link: 'https://pan.baidu.com/s/1qw7ttSdqoPD5jCnwVjT_Xw?pwd=1234'},
+            {id: '180', name: '蔡雅璨', institution: '小明星艺术培训中心有限公司', programName: '《妈妈的眼睛》', programType: '朗诵', avgScore: 0.00, link: '未找到'},
+            {id: '181', name: '陈瑾萱', institution: '俏嘴巴全能表达学院', programName: '祖父的园子', programType: '朗诵', avgScore: 94.96, link: 'https://pan.baidu.com/s/1iK7kV5kx2hD8J1WFtpvTHg?pwd=1234'},
+            {id: '182', name: '黄子霏', institution: '俏嘴巴全能表达学院', programName: '', programType: '朗诵', avgScore: 97.37, link: 'https://pan.baidu.com/s/1qw7ttSdqoPD5jCnwVjT_Xw?pwd=1234'},
+            {id: '183', name: '赵若希', institution: '俏嘴巴全能表达学院', programName: '', programType: '朗诵', avgScore: 97.77, link: 'https://pan.baidu.com/s/11Rc3Pp8a5pNLMV3VQhkKSQ?pwd=1234'},
+            {id: '184', name: '张嘉楠', institution: '小明星艺术培训中心有限公司', programName: '《一颗未射出的子弹》', programType: '朗诵', avgScore: 98.04, link: 'https://pan.baidu.com/s/1qQ-fXb37zloOXoWokxfqtQ?pwd=1234'},
+            {id: '185', name: '韦云依', institution: '小明星艺术培训中心有限公司', programName: '《北京》', programType: '朗诵', avgScore: 98.44, link: 'https://pan.baidu.com/s/1YBcGtpx7KWcqW51VXC-QUw?pwd=1234'},
+            {id: '186', name: '肖天晨', institution: '小明星艺术培训中心有限公司', programName: '《八月桂花飘》', programType: '朗诵', avgScore: 97.75, link: 'https://pan.baidu.com/s/1u0Gu7dWP-_h_HygtdDCbkQ?pwd=1234'},
+            {id: '187', name: '何语诺', institution: '小明星艺术培训中心有限公司', programName: '《迟到》', programType: '朗诵', avgScore: 97.27, link: 'https://pan.baidu.com/s/1Hw7w-vILygq5HxUvLnJBmg?pwd=1234'},
+            {id: '188', name: '李世济', institution: '小明星艺术培训中心有限公司', programName: '《冼星海家书》', programType: '朗诵', avgScore: 98.17, link: 'https://pan.baidu.com/s/1OvodnQmJmGYSlj43H3naqw?pwd=1234'},
+            {id: '189', name: '张锐恩', institution: '小明星艺术培训中心有限公司', programName: '《最好的自己》', programType: '朗诵', avgScore: 95.25, link: 'https://pan.baidu.com/s/1HfdugN9p2dV4rHRTwVzI9w?pwd=1234'},
+            {id: '190', name: '张珺茹', institution: '小明星艺术培训中心有限公司', programName: '《盲孩》', programType: '朗诵', avgScore: 97.45, link: 'https://pan.baidu.com/s/1NmcZzzxA6oZ0hy-Lo1RGMw?pwd=1234'},
+            {id: '191', name: '占浩宇', institution: '小明星艺术培训中心有限公司', programName: '《稻穗里的星火》', programType: '朗诵', avgScore: 95.10, link: 'https://pan.baidu.com/s/1k6fy4TgUktpz-1NIeuGQaA?pwd=1234'},
+            {id: '192', name: '乐语馨', institution: '小明星艺术培训中心有限公司', programName: '《一粒米思念袁隆平爷爷》', programType: '朗诵', avgScore: 98.32, link: 'https://pan.baidu.com/s/1tze45_iyZke4_S6NDcPO3Q?pwd=1234'},
+            {id: '193', name: '姜艺萱', institution: '小明星艺术培训中心有限公司', programName: '《姥姥的手》', programType: '朗诵', avgScore: 96.12, link: 'https://pan.baidu.com/s/1-nvws7l6K_R8PGGitfS-FQ?pwd=1234'},
+            {id: '194', name: '谭睿之', institution: '小明星艺术培训中心有限公司', programName: '《人世间》', programType: '朗诵', avgScore: 97.66, link: 'https://pan.baidu.com/s/1tKoWyKfolAiSd6y3aGD_HQ?pwd=1234'},
+            {id: '195', name: '舒昔妍', institution: '小明星艺术培训中心有限公司', programName: '《这是一张张怎样脸》', programType: '朗诵', avgScore: 98.61, link: 'https://pan.baidu.com/s/1sCzjSd4HzXEgjVYy5LFXPA?pwd=1234'},
+            {id: '196', name: '熊紫涵', institution: '小明星艺术培训中心有限公司', programName: '《铁骨军魂》', programType: '朗诵', avgScore: 98.22, link: 'https://pan.baidu.com/s/1NhvLyNIzCz0lMa-LeZgKSw?pwd=1234'},
+            {id: '197', name: '黄羽萦', institution: '小明星艺术培训中心有限公司', programName: '《美哉，诗经》', programType: '朗诵', avgScore: 98.47, link: 'https://pan.baidu.com/s/1y4tX_VRAGuDzAXmN0QamJg?pwd=1234'},
+            {id: '198', name: '何迈城', institution: '小明星艺术培训中心有限公司', programName: '《英雄归来》', programType: '朗诵', avgScore: 97.03, link: 'https://pan.baidu.com/s/14V3GgxahRurGzIpPR6xbqw?pwd=1234'},
+            {id: '199', name: '徐拓', institution: '小明星艺术培训中心有限公司', programName: '《一颗未射出的子弹》', programType: '朗诵', avgScore: 98.05, link: 'https://pan.baidu.com/s/1d1c_W_aRLDrltRDa9sIQGg?pwd=1234'},
+            {id: '200', name: '谢灵砚', institution: '广电少儿艺术团', programName: '一本鲜红的士官证', programType: '朗诵', avgScore: 97.16, link: 'https://pan.baidu.com/s/1gbUaY6eF5iWoxA4FXfSvqw?pwd=1234'},
+            {id: '201', name: '周柏辰', institution: '小明星艺术培训中心有限公司', programName: '《谦虚过度》', programType: '朗诵', avgScore: 95.16, link: 'https://pan.baidu.com/s/1Qk7uZi3Q0GeNktIntkOwOA?pwd=1234'},
+            {id: '202', name: '彭一诺', institution: '小明星艺术培训中心有限公司', programName: '《我是小红帽》', programType: '朗诵', avgScore: 95.67, link: 'https://pan.baidu.com/s/17usEbdhGZAGOIohMoJcNUw?pwd=1234'},
+            {id: '203', name: '胡方泽', institution: '小明星艺术培训中心有限公司', programName: '《猴吃西瓜》', programType: '朗诵', avgScore: 97.22, link: 'https://pan.baidu.com/s/1tBH0KZME001AsdqRv3y_qA?pwd=1234'},
+            {id: '204', name: '王书苒', institution: '小明星艺术培训中心有限公司', programName: '《我骄傲 我是中国人》', programType: '朗诵', avgScore: 96.36, link: 'https://pan.baidu.com/s/1RhtDzKxDNU-zbokDy6DOiw?pwd=1234'},
+            {id: '205', name: '袁婉宸', institution: '小明星艺术培训中心有限公司', programName: '《废墟上的敬礼》', programType: '朗诵', avgScore: 96.77, link: 'https://pan.baidu.com/s/1kKH-cxcn8ObgfLFEw0tEuw?pwd=1234'},
+            {id: '206', name: '姜钰霖', institution: '小明星艺术培训中心有限公司', programName: '《掩耳盗铃》', programType: '朗诵', avgScore: 97.11, link: 'https://pan.baidu.com/s/1XJ5AvhUNqc9qMQURGEQLSA?pwd=1234'},
+            {id: '207', name: '陈楚涵', institution: '小明星艺术培训中心有限公司', programName: '《可爱的小精灵》', programType: '朗诵', avgScore: 96.52, link: 'https://pan.baidu.com/s/1mVVkV0XB0d_EzDAAK_050A?pwd=1234'},
+            {id: '208', name: '周煦晨', institution: '小明星艺术培训中心有限公司', programName: '《克隆学霸机器人》', programType: '朗诵', avgScore: 96.26, link: 'https://pan.baidu.com/s/15PA20a76ihoxEf3QyfXH_g?pwd=1234'},
+            {id: '209', name: '张珺玥', institution: '小明星艺术培训中心有限公司', programName: '《国防在心，国防在行》', programType: '朗诵', avgScore: 99.05, link: 'https://pan.baidu.com/s/19hOBp-RntEj-vyJLeYzp-w?pwd=1234'}
+        ];
+
+        // 搜索功能优化：支持模糊搜索和不区分大小写
+        function search() {
+            const input = document.getElementById('searchInput').value.trim();
+            if (!input) {
+                showNotification('请输入选手编号或姓名', 'warning');
+                return;
+            }
+            
+            // 格式化输入：去除空格，转为小写
+            const normalizedInput = input.replace(/\s+/g, '').toLowerCase();
+            
+            // 先尝试精确匹配
+            let exactMatch = null;
+            // 再收集模糊匹配结果
+            const fuzzyMatches = [];
+            
+            // 遍历所有数据
+            for (const item of data) {
+                // 编号精确匹配
+                if (item.id === input) {
+                    exactMatch = item;
+                    break;
+                }
+                
+                // 姓名处理：去除空格，转为小写
+                const normalizedName = item.name.replace(/\s+/g, '').toLowerCase();
+                
+                // 姓名精确匹配
+                if (normalizedName === normalizedInput) {
+                    exactMatch = item;
+                    break;
+                }
+                
+                // 姓名模糊匹配（包含输入内容）
+                if (normalizedName.includes(normalizedInput)) {
+                    fuzzyMatches.push(item);
+                }
+            }
+            
+            // 如果有精确匹配，直接打开
+            if (exactMatch) {
+                window.open(exactMatch.link, '_blank');
+                showNotification(`正在打开 ${exactMatch.name} (${exactMatch.id}) 的视频`, 'success');
+                return;
+            }
+            
+            // 如果有模糊匹配结果
+            if (fuzzyMatches.length > 0) {
+                // 如果只有一个模糊匹配结果，直接打开
+                if (fuzzyMatches.length === 1) {
+                    const match = fuzzyMatches[0];
+                    window.open(match.link, '_blank');
+                    showNotification(`找到相似结果：${match.name} (${match.id})，正在打开`, 'success');
+                    return;
+                } 
+                // 如果有多个模糊匹配结果，显示提示
+                else {
+                    let message = `找到多个相似结果：`;
+                    fuzzyMatches.forEach((match, index) => {
+                        if (index < 5) { // 只显示前5个结果
+                            message += ` ${match.name}(${match.id})，`;
+                        } else if (index === 5) {
+                            message += ` 还有${fuzzyMatches.length - 5}个结果...`;
+                        }
+                    });
+                    showNotification(message, 'info');
+                    return;
+                }
+            }
+            
+            // 如果没有找到任何匹配
+            showNotification('未找到匹配的选手，请尝试其他关键词', 'error');
+        }
+
+        // 为推荐卡片添加点击事件
+        function openLink(contestantId) {
+            for (const item of data) {
+                if (item.id === contestantId) {
+                    window.open(item.link, '_blank');
+                    showNotification(`正在打开 ${item.name} (${item.id}) 的视频`, 'success');
+                    return;
+                }
+            }
+        }
+
+        // 通知功能
+        function showNotification(message, type = 'info') {
+            const notificationContainer = document.getElementById('notification');
+            
+            // 清空现有通知
+            notificationContainer.innerHTML = '';
+            
+            // 创建通知元素
+            const notification = document.createElement('div');
+            
+            // 设置样式
+            let bgColor, textColor, icon;
+            switch(type) {
+                case 'success':
+                    bgColor = 'bg-green-500';
+                    textColor = 'text-white';
+                    icon = 'fa-check-circle';
+                    break;
+                case 'error':
+                    bgColor = 'bg-red-500';
+                    textColor = 'text-white';
+                    icon = 'fa-exclamation-circle';
+                    break;
+                case 'warning':
+                    bgColor = 'bg-yellow-500';
+                    textColor = 'text-dark';
+                    icon = 'fa-exclamation-triangle';
+                    break;
+                default:
+                    bgColor = 'bg-blue-500';
+                    textColor = 'text-white';
+                    icon = 'fa-info-circle';
+            }
+            
+            notification.className = `${bgColor} ${textColor} px-6 py-3 rounded-lg shadow-lg flex items-center glass-effect`;
+            notification.innerHTML = `
+                <i class="fa ${icon} mr-3 text-xl"></i>
+                <span>${message}</span>
+            `;
+            
+            // 添加到容器
+            notificationContainer.appendChild(notification);
+            
+            // 显示通知
+            setTimeout(() => {
+                notificationContainer.classList.remove('translate-x-full', 'opacity-0');
+                notificationContainer.classList.add('translate-x-0', 'opacity-100');
+            }, 10);
+            
+            // 自动关闭
+            setTimeout(() => {
+                notificationContainer.classList.remove('translate-x-0', 'opacity-100');
+                notificationContainer.classList.add('translate-x-full', 'opacity-0');
+            }, 4000);
+        }
+
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 键盘事件监听：支持回车键搜索
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    search();
+                }
+            });
+
+            // 滚动时改变导航栏样式
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('py-2');
+                    header.classList.remove('py-3');
+                    header.classList.add('shadow-lg');
+                } else {
+                    header.classList.add('py-3');
+                    header.classList.remove('py-2');
+                    header.classList.remove('shadow-lg');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
